@@ -3,6 +3,7 @@ package com.gabriellima.apipacientes.domain;
 import java.time.LocalDate;
 import java.time.Period;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
 @Table(name = "PACIENTE")
 public class Paciente {
 
@@ -39,14 +41,14 @@ public class Paciente {
 
     private double imc;
 
-    Paciente(String nome, String sobrenome, char sexo, LocalDate nascimento, short altura, double peso, String cpf){
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.sexo = sexo;
-        this.nascimento = nascimento;
-        this.altura = altura;
-        this.peso = peso;
-        this.cpf = cpf;
+    public Paciente(PacienteDTO data){
+        this.nome = data.nome();
+        this.sobrenome = data.sobrenome();
+        this.sexo = data.sexo();
+        this.nascimento = data.nascimento();
+        this.altura = data.altura();
+        this.peso = data.peso();
+        this.cpf = data.cpf();
         this.imc = calcularIMC();
         this.idade = calcularIdade();
     }
