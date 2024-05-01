@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/paciente")
+@RequestMapping("/api/v1/paciente")
 public class PacienteController {
     private final PacienteService service;
 
@@ -36,6 +36,13 @@ public class PacienteController {
         List<Paciente> pacientes = this.service.getAll();
 
         return ResponseEntity.ok().body(pacientes);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Paciente> getById(@PathVariable("id") String id){
+        Paciente paciente = this.service.getById(id);
+
+        return ResponseEntity.ok().body(paciente);
     }
 
     @PutMapping("/{id}")

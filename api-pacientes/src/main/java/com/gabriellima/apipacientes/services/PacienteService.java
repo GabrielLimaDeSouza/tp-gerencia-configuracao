@@ -45,6 +45,12 @@ public class PacienteService {
         this.repository.delete(paciente);
     }
 
+    public Paciente getById(String id){
+        Paciente paciente = this.repository.findById(id).orElseThrow(() -> new RuntimeException("Paciente não encontrado!"));
+
+        return paciente;
+    }
+
     public List<Paciente> getAll(){
         return this.repository.findAll();
     }
