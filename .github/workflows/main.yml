@@ -1,0 +1,19 @@
+name: tp-gerencia-configuracao-CI-CD
+
+on:
+  push: 
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Build Maven
+        working-directory: ./api-pacientes
+        run: mvn clean install
