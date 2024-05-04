@@ -1,4 +1,4 @@
-name: tp-gerencia-configuracao-CI-CD
+name: tp-gerencia-configuracao-CI-CD-pipeline
 
 on:
   push: 
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  CI:
+  COMMIT:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,3 +17,6 @@ jobs:
       - name: Build Maven
         working-directory: ./api-pacientes
         run: mvn clean install
+      - name: Run Unit Tests
+        working-directory: ./api-pacientes
+        run: mvn test
