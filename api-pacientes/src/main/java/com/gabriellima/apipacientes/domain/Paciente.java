@@ -54,17 +54,18 @@ public class Paciente {
     }
 
     public double obterPesoIdeal(){
+        double altura = this.altura / 100.0;
         if(this.sexo == 'M'){
-            return (72.7 * this.altura) - 58;
+            return (72.7 * altura) - 58.0;
         } else {
-            return (62.1 * this.altura) - 44.7;
+            return (62.1 * altura) - 44.7;
         }
     }
 
     public String obterCpfOfuscado(){
         String cpf = this.cpf;
 
-        String digitos = cpf.substring(3,6);
+        String digitos = cpf.substring(4,7);
 
         return "***." + digitos + ".***-**";
     }
@@ -93,7 +94,13 @@ public class Paciente {
     }
 
     public double calcularIMC(){
-        return this.peso / (this.altura * this.altura);
+        double alturaEmMetros = this.altura / 100.0;
+        double imc = this.peso / (alturaEmMetros * alturaEmMetros);
+        
+        // Arredonda para duas casas decimais
+        imc = Math.round(imc * 100.0) / 100.0;
+        
+        return imc;
     }
 
     public byte calcularIdade(){
@@ -112,26 +119,23 @@ public class Paciente {
         if (cpf == null || cpf.length() != 11 || !cpf.matches("\\d{11}")) {
             return false;
         }
-
+    
         int[] cpfDigits = new int[11];
         for (int i = 0; i < 11; i++) {
             cpfDigits[i] = Integer.parseInt(String.valueOf(cpf.charAt(i)));
         }
-
+    
         int v1 = 0;
         int v2 = 0;
         for (int i = 0; i < 9; i++) {
-            v1 += cpfDigits[i] * (9 - (i % 10));
-            v2 += cpfDigits[i] * (9 - ((i + 1) % 10));
+            v1 += cpfDigits[i] * (10 - i);
+            v2 += cpfDigits[i] * (11 - i);
         }
-
-        v1 = (v1 % 11) % 10;
-        v2 += v1 * 9;
-        v2 = (v2 % 11) % 10;
-
-        int v1Value = cpfDigits[9];
-        int v2Value = cpfDigits[10];
-
-        return v1 == v1Value && v2 == v2Value;
+    
+        v1 = (v1 % 11) < 2 ? 0 : 11 - (v1 % 11);
+        v2 += v1 * 2;
+        v2 = (v2 % 11) < 2 ? 0 : 11 - (v2 % 11);
+    
+        return cpfDigits[9] == v1 && cpfDigits[10] == v2;
     }
 }
