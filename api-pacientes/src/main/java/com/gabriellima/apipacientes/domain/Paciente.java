@@ -105,6 +105,33 @@ public class Paciente {
     }
 
     public boolean validarCPF(){
-        return true;
+        String cpf = this.cpf;
+
+        cpf = cpf.replaceAll("[.-]", "");
+
+        if (cpf == null || cpf.length() != 11 || !cpf.matches("\\d{11}")) {
+            return false;
+        }
+
+        int[] cpfDigits = new int[11];
+        for (int i = 0; i < 11; i++) {
+            cpfDigits[i] = Integer.parseInt(String.valueOf(cpf.charAt(i)));
+        }
+
+        int v1 = 0;
+        int v2 = 0;
+        for (int i = 0; i < 9; i++) {
+            v1 += cpfDigits[i] * (9 - (i % 10));
+            v2 += cpfDigits[i] * (9 - ((i + 1) % 10));
+        }
+
+        v1 = (v1 % 11) % 10;
+        v2 += v1 * 9;
+        v2 = (v2 % 11) % 10;
+
+        int v1Value = cpfDigits[9];
+        int v2Value = cpfDigits[10];
+
+        return v1 == v1Value && v2 == v2Value;
     }
 }
