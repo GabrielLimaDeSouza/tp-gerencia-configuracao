@@ -1,4 +1,4 @@
-package com.gabriellima.apipacientes;
+package com.gabriellima.apipacientes.unitTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
