@@ -21,22 +21,22 @@ public class PacienteTest {
     }
     
     @Test
-    public void shouldGetImc(){
+    public void testShouldGetImc(){
         assertEquals(paciente.getImc(), 24.39);
     }
 
     @Test
-    public void shouldGetPesoIdeal(){
+    public void testShouldGetPesoIdeal(){
         assertEquals(paciente.obterPesoIdeal(), 65.59);
     }
 
     @Test
-    public void shouldGetCpfOfuscado(){
+    public void testShouldGetCpfOfuscado(){
         assertEquals(paciente.obterCpfOfuscado(), "***.456.***-**");
     }
 
     @Test
-    public void shouldGetSituacaoIMC(){
+    public void testShouldGetSituacaoIMC(){
         assertEquals(paciente.obterSituacaoIMC(), "Peso normal");
 
         paciente.setImc(33.04);
@@ -48,12 +48,12 @@ public class PacienteTest {
     }
 
     @Test
-    public void shouldCalcularIMC(){
+    public void testShouldCalcularIMC(){
         assertEquals(paciente.getImc(), 24.39);
     }
 
     @Test
-    public void shouldCalcularIdade(){
+    public void testShouldCalcularIdade(){
         LocalDate data = LocalDate.of(2002, 11, 6);
 
         paciente.setNascimento(data);
@@ -62,7 +62,7 @@ public class PacienteTest {
     }
 
     @Test
-    public void shouldValidarCpf(){
+    public void testShouldValidarCpf(){
         assertEquals(paciente.validarCPF(), false);
 
         paciente.setCpf("292.512.871-80");
