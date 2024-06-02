@@ -20,6 +20,14 @@ jobs:
       - name: Run Unit and Integration Tests
         working-directory: ./api-pacientes
         run: mvn test
+  ACCEPTANCE:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
       - name: Run Acceptance Tests
         working-directory: ./api-pacientes
         run: mvn test -Dtest=CucumberRunner
