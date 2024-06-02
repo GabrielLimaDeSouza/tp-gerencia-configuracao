@@ -17,6 +17,6 @@ jobs:
       - name: Build Maven
         working-directory: ./api-pacientes
         run: mvn clean install
-      - name: Run Unit Tests
+      - name: Run Unit and Integration Tests
         working-directory: ./api-pacientes
         run: mvn test
