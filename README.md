@@ -14,6 +14,7 @@ Este projeto implementa uma API de gerenciamento de pacientes utilizando Java e 
 - [Arquitetura](#arquitetura)
 - [Instruções de Uso](#instruções-de-uso)
 - [Tecnologias Usadas](#tecnologias-usadas)
+- [Código Fonte](#código-fonte)
 - [Testes](#testes)
 - [Contribuição](#contribuição)
 - [Autores](#autores)
@@ -68,6 +69,10 @@ A arquitetura do sistema é baseada em uma API Rest utilizando Spring Boot. A AP
 - [Cucumber](https://cucumber.io/)
 - [Docker](https://www.docker.com/)
 - [Docker Hub](https://hub.docker.com/)
+
+# Código Fonte
+
+O código fonte do projeto pode ser encontrado na pasta [api-pacientes](https://github.com/GabrielLimaDeSouza/tp-gerencia-configuracao/tree/main/api-pacientes).
 
 # Testes
 
